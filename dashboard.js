@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnJXIUrwkx9s5FlYPJMREDyiBVS0VgMCg",
@@ -34,7 +34,7 @@ onAuthStateChanged(auth, (user) => {
             userPhotoEl.style.display = "block";
         }
         
-        cargarCursos();
+        cargarCursos(user.uid);
     } else {
         window.location.href = "index.html";
     }
@@ -48,7 +48,7 @@ logoutBtn.addEventListener('click', () => {
     });
 });
 
-async function cargarCursos() {
+async function cargarCursos(uid) {
     courseGrid.innerHTML = `
         <div class="loader-container">
             <div class="spinner"></div>
@@ -57,16 +57,32 @@ async function cargarCursos() {
     `;
     
     try {
+        const progresoRef = doc(db, "progreso", uid);
+        const progresoSnap = await getDoc(progresoRef);
+        let cursosCompletados = [];
+        
+        if (progresoSnap.exists()) {
+            const data = progresoSnap.data();
+            if (data.cursosCompletados) {
+                cursosCompletados = data.cursosCompletados;
+            }
+        }
+
         const querySnapshot = await getDocs(collection(db, "cursos"));
         let cursosHTML = "";
         
         querySnapshot.forEach((doc) => {
             const curso = doc.data();
             const cursoId = doc.id;
+            const completado = cursosCompletados.includes(cursoId);
+            const badgeHTML = completado ? `<span class="badge-completado">Completado</span>` : "";
             
             cursosHTML += `
                 <div class="course-card">
-                    <h3>${curso.titulo}</h3>
+                    <div class="card-header">
+                        <h3>${curso.titulo}</h3>
+                        ${badgeHTML}
+                    </div>
                     <p>${curso.descripcion}</p>
                     <button class="btn-course" onclick="window.location.href='curso.html?id=${cursoId}'">Continuar</button>
                 </div>
@@ -92,4 +108,3 @@ async function cargarCursos() {
         }
     }
 }
-
