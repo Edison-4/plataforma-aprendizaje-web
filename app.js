@@ -29,7 +29,7 @@ registerForm.addEventListener('submit', (e) => {
             messageEl.textContent = "Usuario registrado con éxito.";
             registerForm.reset();
             setTimeout(() => {
-                window.location.href = "login.html";
+                window.location.href = "index.html";
             }, 1500);
         })
         .catch((error) => {
@@ -37,3 +37,4 @@ registerForm.addEventListener('submit', (e) => {
             messageEl.textContent = "Error al registrar: " + error.message;
         });
 });
+
