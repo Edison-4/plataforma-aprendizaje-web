@@ -62,11 +62,13 @@ async function cargarCursos() {
         
         querySnapshot.forEach((doc) => {
             const curso = doc.data();
+            const cursoId = doc.id;
+            
             cursosHTML += `
                 <div class="course-card">
                     <h3>${curso.titulo}</h3>
                     <p>${curso.descripcion}</p>
-                    <button class="btn-course">Continuar</button>
+                    <button class="btn-course" onclick="window.location.href='curso.html?id=${cursoId}'">Continuar</button>
                 </div>
             `;
         });
@@ -90,3 +92,4 @@ async function cargarCursos() {
         }
     }
 }
+
