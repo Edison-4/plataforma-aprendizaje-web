@@ -36,13 +36,13 @@ onAuthStateChanged(auth, (user) => {
         
         cargarCursos();
     } else {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 });
 
 logoutBtn.addEventListener('click', () => {
     signOut(auth).then(() => {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }).catch((error) => {
         alert(error.message);
     });
