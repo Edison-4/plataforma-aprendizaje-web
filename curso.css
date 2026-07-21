@@ -54,3 +54,33 @@
     font-size: 16px;
     text-align: justify;
 }
+
+.curso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-completar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-completar:hover {
+    background-color: #218838;
+}
+
+.btn-completar.completado {
+    background-color: #6c757d;
+}
+
+.btn-completar.completado:hover {
+    background-color: #5a6268;
+}
