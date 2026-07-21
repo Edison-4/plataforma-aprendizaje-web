@@ -3,12 +3,13 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyBnJXIUrwkx9s5FlYPJMREDyiBVS0VgMCg",
+  authDomain: "plataforma-aprendizaje-web.firebaseapp.com",
+  projectId: "plataforma-aprendizaje-web",
+  storageBucket: "plataforma-aprendizaje-web.firebasestorage.app",
+  messagingSenderId: "262588326355",
+  appId: "1:262588326355:web:3e7704d9ce7464b3d8cf26",
+  measurementId: "G-6293PR1DGL"
 };
 
 const app = initializeApp(firebaseConfig);
