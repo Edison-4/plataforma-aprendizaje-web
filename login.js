@@ -18,12 +18,20 @@ const provider = new GoogleAuthProvider();
 const loginForm = document.getElementById('login-form');
 const messageEl = document.getElementById('message');
 const googleBtn = document.getElementById('google-btn');
+const togglePassword = document.getElementById('toggle-password');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.textContent = type === 'password' ? 'Ver' : 'Ocultar';
+});
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const password = passwordInput.value;
     
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
