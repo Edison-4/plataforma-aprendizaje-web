@@ -16,12 +16,20 @@ const auth = getAuth(app);
 
 const registerForm = document.getElementById('register-form');
 const messageEl = document.getElementById('message');
+const togglePassword = document.getElementById('toggle-password');
+const passwordInput = document.getElementById('password');
+
+togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.textContent = type === 'password' ? 'Ver' : 'Ocultar';
+});
 
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const password = passwordInput.value;
     
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -37,4 +45,3 @@ registerForm.addEventListener('submit', (e) => {
             messageEl.textContent = "Error al registrar: " + error.message;
         });
 });
-
