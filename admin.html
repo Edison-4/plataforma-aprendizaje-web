@@ -12,6 +12,16 @@
         .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; min-height: 150px; font-family: inherit; }
         .btn-success { background-color: #28a745; }
         .btn-success:hover { background-color: #218838; }
+        .btn-cancel { background-color: #dc3545; display: none; margin-top: 10px;}
+        .btn-cancel:hover { background-color: #c82333; }
+        
+        /* Estilos para la lista de cursos */
+        .curso-list-item { border: 1px solid #eee; padding: 15px; margin-bottom: 10px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .curso-list-info h4 { margin-bottom: 5px; color: #333; }
+        .curso-list-info p { font-size: 13px; color: #666; margin: 0; }
+        .curso-actions button { padding: 6px 12px; margin-left: 5px; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; color: white;}
+        .btn-edit { background-color: #ffc107; color: #000 !important; }
+        .btn-delete { background-color: #dc3545; }
     </style>
 </head>
 <body style="display: block; height: auto;">
@@ -22,8 +32,9 @@
         </div>
     </nav>
     <main class="admin-container">
-        <h2>Crear / Publicar Nuevo Curso</h2>
-        <p style="margin-bottom: 20px; color: #666;">Llena este formulario para publicar un curso inmediatamente en la plataforma.</p>
+        
+        <h2 id="form-titulo">Crear Nuevo Curso</h2>
+        <p style="margin-bottom: 20px; color: #666;">Llena este formulario para publicar o modificar un curso en la plataforma.</p>
         
         <form id="form-curso">
             <div class="form-group">
@@ -42,9 +53,18 @@
                 <label for="texto">Contenido / Lectura de la clase (Opcional)</label>
                 <textarea id="texto" placeholder="Puedes escribir el contenido aquí. Puedes usar etiquetas HTML como <br> para saltos de línea o <b> para negritas."></textarea>
             </div>
-            <button type="submit" class="btn-success">Guardar y Publicar Curso</button>
+            <button type="submit" id="btn-submit" class="btn-success">Guardar y Publicar Curso</button>
+            <button type="button" id="btn-cancelar" class="btn-cancel">Cancelar Edición</button>
         </form>
         <p id="mensaje-admin" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 2px solid #eee;">
+
+        <h2>Cursos Publicados</h2>
+        <div id="lista-cursos" style="margin-top: 20px;">
+            <p>Cargando cursos...</p>
+        </div>
+
     </main>
     <script type="module" src="admin.js"></script>
 </body>
