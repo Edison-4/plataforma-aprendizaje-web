@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body style="display: block; height: auto;">
-    <nav class="navbar">
+        <nav class="navbar">
         <div class="nav-brand">Plataforma Edu</div>
         <div class="nav-user">
+            <!-- Botón de admin oculto por defecto -->
+            <a href="admin.html" id="btn-admin" class="btn-back" style="display: none; margin-right: 15px; color: #ffeb3b;">Panel Admin</a>
+            
             <img id="user-photo" src="" alt="Foto de perfil" class="profile-pic" style="display: none;">
             <span id="user-info">Cargando...</span>
             <button id="logout-btn" class="btn-logout">Cerrar Sesión</button>
