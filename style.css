@@ -121,3 +121,19 @@ button:hover {
     background-color: transparent;
     text-decoration: underline;
 }
+
+/* Nuevo fondo para las pantallas de inicio y registro */
+.bg-auth {
+    background-image: url('fondo.jpg'); /* Asegúrate de que el nombre coincida con tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Efecto de transparencia para el cuadro del formulario */
+.form-cristal {
+    background-color: rgba(255, 255, 255, 0.85); /* El 0.85 controla qué tan transparente es */
+    backdrop-filter: blur(8px); /* Aplica un ligero desenfoque al fondo que está detrás del cuadro */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
