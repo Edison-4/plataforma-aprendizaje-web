@@ -34,6 +34,11 @@ onAuthStateChanged(auth, (user) => {
             userPhotoEl.style.display = "block";
         }
         
+        // Lógica del Superusuario
+        if (user.email === 'gregoryplaza4@gmail.com') {
+            document.getElementById('btn-admin').style.display = 'inline-block';
+        }
+        
         cargarCursos(user.uid);
     } else {
         window.location.href = "index.html";
