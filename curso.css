@@ -86,22 +86,37 @@
 }
 
 /* =========================================
-   FORZAR DISEÑO MÓVIL EN EL CURSO
+   FORZAR DISEÑO MÓVIL EN EL CURSO (CENTRADO)
    ========================================= */
 @media screen and (max-width: 768px) {
     body {
-        overflow-x: hidden; /* Evita que la pantalla se deslice a los lados */
+        display: block !important; /* Fuerza a que los elementos vayan de arriba hacia abajo */
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    .navbar {
+        width: 100% !important; /* La línea azul cubre todo el ancho superior */
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important; /* Centra el texto dentro de la barra azul */
+        align-items: center !important;
+        text-align: center !important;
     }
     
     .curso-container {
-        width: 90% !important; /* Obliga a la caja a ser más pequeña que la pantalla */
-        max-width: 100% !important;
-        margin: 20px auto !important; /* La centra perfectamente */
+        display: block !important; /* Evita que intente ponerse al lado de la barra */
+        width: 90% !important; 
+        max-width: 100vw !important;
+        margin: 30px auto !important; /* El 'auto' centra la caja blanca horizontalmente */
         padding: 20px !important;
         box-sizing: border-box !important;
     }
 
     .curso-header {
+        display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 15px !important;
@@ -109,11 +124,12 @@
 
     .btn-completar {
         width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .video-container iframe {
         width: 100% !important;
         height: auto !important;
-        aspect-ratio: 16/9 !important; /* Mantiene la forma del video de YouTube */
+        aspect-ratio: 16/9 !important; 
     }
 }
