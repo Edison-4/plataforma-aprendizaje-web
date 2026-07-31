@@ -23,8 +23,6 @@ const tituloEl = document.getElementById('curso-titulo');
 const descripcionEl = document.getElementById('curso-descripcion');
 const contenidoEl = document.getElementById('curso-contenido');
 const btnCompletar = document.getElementById('btn-completar');
-
-// Estas son las dos variables que faltaban para que no se estrelle al cargar la foto/nombre
 const userInfoEl = document.getElementById('user-info');
 const userPhotoEl = document.getElementById('user-photo');
 
@@ -35,18 +33,21 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         usuarioActual = user;
         
-        if (user.displayName) {
-            userInfoEl.textContent = user.displayName;
-        } else {
-            userInfoEl.textContent = user.email;
+        // ESCUDO 1: Solo intenta poner el nombre si el elemento existe en el HTML
+        if (userInfoEl) {
+            if (user.displayName) {
+                userInfoEl.textContent = user.displayName;
+            } else {
+                userInfoEl.textContent = user.email;
+            }
         }
         
-        if (user.photoURL) {
+        // ESCUDO 2: Solo intenta poner la foto si el elemento existe en el HTML
+        if (userPhotoEl && user.photoURL) {
             userPhotoEl.src = user.photoURL;
             userPhotoEl.style.display = "block";
         }
 
-        // Llama a la función aquí
         cargarTextosVisuales();
 
         if (cursoId) {
@@ -133,53 +134,64 @@ async function verificarProgreso(id) {
         }
         
         actualizarBoton();
-        btnCompletar.style.display = "block";
+        
+        if(btnCompletar) {
+            btnCompletar.style.display = "block";
+        }
     } catch (error) {
         console.error(error);
     }
 }
 
 function actualizarBoton() {
-    if (estaCompletado) {
-        btnCompletar.textContent = "Completado";
-        btnCompletar.classList.add("completado");
-    } else {
-        btnCompletar.textContent = "Marcar como completado";
-        btnCompletar.classList.remove("completado");
+    if (btnCompletar) {
+        if (estaCompletado) {
+            btnCompletar.textContent = "Completado";
+            btnCompletar.classList.add("completado");
+        } else {
+            btnCompletar.textContent = "Marcar como completado";
+            btnCompletar.classList.remove("completado");
+        }
     }
 }
 
-btnCompletar.addEventListener('click', async () => {
-    try {
-        const progresoRef = doc(db, "progreso", usuarioActual.uid);
-        
-        if (estaCompletado) {
-            await setDoc(progresoRef, {
-                cursosCompletados: arrayRemove(cursoId)
-            }, { merge: true });
-            estaCompletado = false;
-        } else {
-            await setDoc(progresoRef, {
-                cursosCompletados: arrayUnion(cursoId)
-            }, { merge: true });
-            estaCompletado = true;
+if (btnCompletar) {
+    btnCompletar.addEventListener('click', async () => {
+        try {
+            const progresoRef = doc(db, "progreso", usuarioActual.uid);
+            
+            if (estaCompletado) {
+                await setDoc(progresoRef, {
+                    cursosCompletados: arrayRemove(cursoId)
+                }, { merge: true });
+                estaCompletado = false;
+            } else {
+                await setDoc(progresoRef, {
+                    cursosCompletados: arrayUnion(cursoId)
+                }, { merge: true });
+                estaCompletado = true;
+            }
+            
+            actualizarBoton();
+        } catch (error) {
+            alert("Error al actualizar el progreso: " + error.message);
         }
-        
-        actualizarBoton();
-    } catch (error) {
-        alert("Error al actualizar el progreso: " + error.message);
-    }
-});
+    });
+}
 
 async function cargarTextosVisuales() {
     try {
         const docRef = doc(db, "configuracion", "textos");
         const docSnap = await getDoc(docRef);
+        const marcaPlataforma = document.getElementById('marca-plataforma');
         
-        if (docSnap.exists()) {
-            document.getElementById('marca-plataforma').textContent = docSnap.data().marca;
-        } else {
-            document.getElementById('marca-plataforma').textContent = "Plataforma Edu";
+        // ESCUDO 3: Solo cambia el texto si encontró el id "marca-plataforma"
+        if (marcaPlataforma) {
+            if (docSnap.exists()) {
+                marcaPlataforma.textContent = docSnap.data().marca;
+            } else {
+                marcaPlataforma.textContent = "Plataforma Edu";
+            }
         }
     } catch (error) {
         console.error("Error al cargar los textos: ", error);
