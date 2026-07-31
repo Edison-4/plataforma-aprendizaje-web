@@ -85,7 +85,9 @@ listaCursosEl.addEventListener('click', async (e) => {
             document.getElementById('descripcion').value = curso.descripcion || "";
             document.getElementById('video').value = curso.video || "";
             document.getElementById('texto').value = curso.texto || "";
-            
+            document.getElementById('recursos').value = curso.recursos || "";
+            document.getElementById('cuestionario').value = curso.cuestionario || "";
+          
             // Cambiar el estado del formulario a Modo Edición
             editandoId = id;
             formTitulo.textContent = "Editando Curso";
@@ -146,7 +148,9 @@ formCurso.addEventListener('submit', async (e) => {
                 titulo: titulo,
                 descripcion: descripcion,
                 video: video,
-                texto: texto
+                texto: texto,
+                recursos: recursos,
+                cuestionario: cuestionario
             });
             mensajeEl.textContent = "¡Curso actualizado con éxito!";
         } else {
@@ -155,7 +159,9 @@ formCurso.addEventListener('submit', async (e) => {
                 titulo: titulo,
                 descripcion: descripcion,
                 video: video,
-                texto: texto
+                texto: texto,
+                recursos: recursos,
+                cuestionario: cuestionario
             });
             mensajeEl.textContent = "¡Curso publicado con éxito!";
         }
