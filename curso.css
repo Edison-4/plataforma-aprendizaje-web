@@ -84,3 +84,36 @@
 .btn-completar.completado:hover {
     background-color: #5a6268;
 }
+
+/* =========================================
+   FORZAR DISEÑO MÓVIL EN EL CURSO
+   ========================================= */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Evita que la pantalla se deslice a los lados */
+    }
+    
+    .curso-container {
+        width: 90% !important; /* Obliga a la caja a ser más pequeña que la pantalla */
+        max-width: 100% !important;
+        margin: 20px auto !important; /* La centra perfectamente */
+        padding: 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    .curso-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+    }
+
+    .btn-completar {
+        width: 100% !important;
+    }
+
+    .video-container iframe {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16/9 !important; /* Mantiene la forma del video de YouTube */
+    }
+}
