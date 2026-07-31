@@ -72,6 +72,22 @@ async function cargarDetalleCurso(id) {
             if (!curso.video && !curso.texto) {
                 htmlContenido = "<p>El contenido de este curso estará disponible pronto.</p>";
             }
+                        if (curso.recursos) {
+                htmlContenido += `
+                    <div class="recursos-contenido" style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #0056b3; margin-top: 20px; margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 10px; color: #333; font-size: 18px;">Material de Apoyo y Recursos</h3>
+                        ${curso.recursos}
+                    </div>
+                `;
+            }
+            
+            if (curso.cuestionario) {
+                htmlContenido += `
+                    <div class="cuestionario-container" style="margin-top: 30px; width: 100%; display: flex; justify-content: center;">
+                        ${curso.cuestionario}
+                    </div>
+                `;
+            }
             
             contenidoEl.innerHTML = htmlContenido;
         } else {
