@@ -8,43 +8,44 @@
     <link rel="stylesheet" href="curso.css?v=9">
     
     <!-- EL TRUCO DEFINITIVO: CSS INCORPORADO PARA MÓVILES -->
-        <!-- EL TRUCO DEFINITIVO: CSS INCORPORADO PARA MÓVILES -->
     <style>
         @media screen and (max-width: 768px) {
-            /* Matamos cualquier margen por defecto de la página */
             html, body {
                 margin: 0 !important;
                 padding: 0 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
                 width: 100vw !important;
                 overflow-x: hidden !important;
+                background-color: #f4f7f6 !important;
+                position: relative !important; /* Vital para que el anclaje funcione */
             }
             
-            /* Pegamos la barra azul absolutamente arriba */
+            /* TRUCO MAESTRO: Anclar la barra exactamente al píxel cero superior */
             .navbar {
-                width: 100% !important;
-                margin: 0 !important; 
+                position: absolute !important;
                 top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                margin: 0 !important;
                 box-sizing: border-box !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
                 padding: 15px !important;
+                z-index: 100 !important;
             }
 
             .nav-brand {
-                margin-top: 0 !important; /* Evita que el texto empuje la barra hacia abajo */
+                margin-top: 0 !important;
                 margin-bottom: 15px !important;
                 text-align: center !important;
             }
             
+            /* Como la barra ahora está anclada al techo, empujamos el curso hacia abajo */
             .curso-container {
                 width: 92% !important;
                 max-width: 100% !important;
-                margin: 25px auto !important;
+                margin: 140px auto 25px auto !important; /* Los 140px son el espacio para la barra azul */
                 box-sizing: border-box !important;
                 display: block !important;
             }
