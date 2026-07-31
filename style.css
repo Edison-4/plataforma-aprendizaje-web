@@ -166,26 +166,27 @@ button:hover {
     object-fit: cover;
     border: 2px solid #ffffff;
 }
+
 /* =========================================
    DISEÑO RESPONSIVO (TELÉFONOS MÓVILES)
    ========================================= */
 @media screen and (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Apila el título y los controles de usuario verticalmente */
+        flex-direction: column; 
         padding: 15px;
         gap: 15px;
         text-align: center;
     }
 
     .nav-user {
-        flex-direction: column; /* Apila el correo y los botones */
+        flex-direction: column; 
         width: 100%;
         gap: 10px;
     }
 
     .btn-back {
-        margin-right: 0 !important; /* Quita el margen derecho de PC */
-        width: 100%; /* Hace que el botón ocupe el ancho de la pantalla */
+        margin-right: 0 !important; 
+        width: 100%; 
         text-align: center;
         display: block;
         padding: 10px;
@@ -199,6 +200,6 @@ button:hover {
 
     #user-info {
         font-size: 14px;
-        word-break: break-all; /* Si el correo es muy largo, permite que se corte en dos líneas sin dañar el diseño */
+        word-break: break-all; 
     }
 }
