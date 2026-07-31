@@ -65,8 +65,25 @@
             <button type="button" id="btn-cancelar" class="btn-cancel">Cancelar Edición</button>
         </form>
         <p id="mensaje-admin" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
-
+        
         <hr style="margin: 40px 0; border: 0; border-top: 2px solid #eee;">
+        
+        <h2>Configuración Visual</h2>
+        <p style="margin-bottom: 20px; color: #666;">Modifica los textos principales de la plataforma.</p>
+        
+        <form id="form-config">
+            <div class="form-group">
+                <label for="input-marca">Nombre de la Plataforma (Esquina superior izquierda)</label>
+                <input type="text" id="input-marca" required placeholder="Ej: Plataforma Edu">
+            </div>
+            <div class="form-group">
+                <label for="input-bienvenida">Mensaje de Bienvenida (Título principal)</label>
+                <input type="text" id="input-bienvenida" required placeholder="Ej: Bienvenido a tus cursos">
+            </div>
+            <button type="submit" class="btn-success" style="background-color: #0056b3;">Guardar Configuración Visual</button>
+        </form>
+        <p id="mensaje-config" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
+        
 
         <h2>Cursos Publicados</h2>
         <div id="lista-cursos" style="margin-top: 20px;">
