@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnJXIUrwkx9s5FlYPJMREDyiBVS0VgMCg",
@@ -33,6 +33,7 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = "dashboard.html";
     } else {
         cargarCursosAdmin(); // Cargamos la lista si es el superusuario
+        cargarConfiguracion();
     }
 });
 
@@ -177,5 +178,45 @@ formCurso.addEventListener('submit', async (e) => {
     } catch (error) {
         mensajeEl.style.color = "red";
         mensajeEl.textContent = "Error: " + error.message;
+    }
+});
+
+// --- LÓGICA PARA CONFIGURACIÓN VISUAL ---
+const formConfig = document.getElementById('form-config');
+const mensajeConfig = document.getElementById('mensaje-config');
+const inputMarca = document.getElementById('input-marca');
+const inputBienvenida = document.getElementById('input-bienvenida');
+
+async function cargarConfiguracion() {
+    try {
+        const docSnap = await getDoc(doc(db, "configuracion", "textos"));
+        if (docSnap.exists()) {
+            inputMarca.value = docSnap.data().marca || "Plataforma Edu";
+            inputBienvenida.value = docSnap.data().bienvenida || "Bienvenido a tus cursos";
+        }
+    } catch (error) {
+        console.error("Error al cargar configuración", error);
+    }
+}
+// Llamar a esta función cuando cargue el panel (agrégala dentro del if que valida tu correo de superusuario)
+cargarConfiguracion(); 
+
+formConfig.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    mensajeConfig.style.color = "#0056b3";
+    mensajeConfig.textContent = "Guardando configuración...";
+    
+    try {
+        // Usamos setDoc en lugar de addDoc para sobreescribir siempre el mismo documento llamado "textos"
+        await setDoc(doc(db, "configuracion", "textos"), {
+            marca: inputMarca.value,
+            bienvenida: inputBienvenida.value
+        });
+        mensajeConfig.style.color = "green";
+        mensajeConfig.textContent = "¡Textos actualizados con éxito!";
+        setTimeout(() => mensajeConfig.textContent = "", 3000);
+    } catch (error) {
+        mensajeConfig.style.color = "red";
+        mensajeConfig.textContent = "Error: " + error.message;
     }
 });
