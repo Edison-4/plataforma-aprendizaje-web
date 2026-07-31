@@ -8,37 +8,39 @@
     <link rel="stylesheet" href="curso.css?v=8">
     
     <!-- EL TRUCO DEFINITIVO: CSS INCORPORADO PARA MÓVILES -->
+        <!-- EL TRUCO DEFINITIVO: CSS INCORPORADO PARA MÓVILES -->
     <style>
         @media screen and (max-width: 768px) {
-            /* Obliga a la página a ser una sola columna vertical */
-            body {
+            /* Matamos cualquier margen por defecto de la página */
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                margin: 0 !important;
-                padding: 0 !important;
                 width: 100vw !important;
                 overflow-x: hidden !important;
             }
             
-            /* Fuerza a la barra azul a ocupar el 100% de arriba */
+            /* Pegamos la barra azul absolutamente arriba */
             .navbar {
                 width: 100% !important;
+                margin: 0 !important; 
+                top: 0 !important;
                 box-sizing: border-box !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 justify-content: center !important;
                 padding: 15px !important;
-                position: relative !important;
             }
 
             .nav-brand {
+                margin-top: 0 !important; /* Evita que el texto empuje la barra hacia abajo */
                 margin-bottom: 15px !important;
                 text-align: center !important;
             }
             
-            /* Centra la caja blanca perfectamente abajo */
             .curso-container {
                 width: 92% !important;
                 max-width: 100% !important;
@@ -48,6 +50,7 @@
             }
 
             .curso-header {
+                display: flex !important;
                 flex-direction: column !important;
                 align-items: flex-start !important;
                 gap: 15px !important;
