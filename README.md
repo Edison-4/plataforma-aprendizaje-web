@@ -1,1 +1,1 @@
-# plataforma-aprendizaje-web
+# Plataforma aprendizaje web
