@@ -39,6 +39,10 @@ onAuthStateChanged(auth, (user) => {
             document.getElementById('btn-admin').style.display = 'inline-block';
         }
         
+        // EJECUTAMOS LA FUNCIÓN DE LOS TEXTOS AQUÍ
+        cargarTextosVisuales();
+        
+        // LUEGO CARGAMOS LOS CURSOS
         cargarCursos(user.uid);
     } else {
         window.location.href = "index.html";
@@ -111,5 +115,24 @@ async function cargarCursos(uid) {
                 </div>
             `;
         }
+    }
+}
+
+async function cargarTextosVisuales() {
+    try {
+        const docRef = doc(db, "configuracion", "textos");
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+            const datos = docSnap.data();
+            document.getElementById('marca-plataforma').textContent = datos.marca;
+            document.getElementById('texto-bienvenida').textContent = datos.bienvenida;
+        } else {
+            // Textos de respaldo por si el documento aún no se ha creado
+            document.getElementById('marca-plataforma').textContent = "Plataforma Edu";
+            document.getElementById('texto-bienvenida').textContent = "Bienvenido a tus cursos";
+        }
+    } catch (error) {
+        console.error("Error al cargar los textos: ", error);
     }
 }
