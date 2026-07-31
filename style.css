@@ -166,6 +166,57 @@ button:hover {
     object-fit: cover;
     border: 2px solid #ffffff;
 }
+/* =========================================
+   DISEÑO BASE (COMPUTADORAS / WEB)
+   ========================================= */
+body {
+    display: block !important; /* Rompe el diseño de columnas del style.css original */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+}
+
+.navbar {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important; /* Separa la marca del botón */
+    align-items: center;
+    padding: 15px 40px !important;
+}
+
+.nav-brand {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.curso-container {
+    width: 80% !important; /* En PC ocupará el 80% de la pantalla */
+    max-width: 1000px !important; /* No crecerá más de este tamaño en monitores gigantes */
+    margin: 40px auto !important; /* El 'auto' lo centra horizontalmente */
+    padding: 40px !important;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: block !important;
+}
+
+.curso-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important; /* Título a la izquierda, botón a la derecha */
+    align-items: center !important;
+    margin-bottom: 30px !important;
+}
+
+/* El botón verde en PC no necesita ser tan ancho */
+.btn-completar {
+    width: auto !important;
+    padding: 10px 20px !important;
+    white-space: nowrap;
+}
 
 /* =========================================
    DISEÑO RESPONSIVO (TELÉFONOS MÓVILES)
