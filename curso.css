@@ -1,43 +1,35 @@
-.btn-back {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-}
+/* =========================================
+   DISEÑO LIMPIO DEL CURSO (PC Y MÓVIL)
+   ========================================= */
 
-.btn-back:hover {
-    text-decoration: underline;
-}
-
+/* Caja principal del curso */
 .curso-container {
-    max-width: 900px;
-    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto; /* El auto lo centra horizontalmente siempre */
     padding: 30px;
-    background: white;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.descripcion-destacada {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
+/* Cabecera (Título y botón) */
+.curso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
-.contenido-area {
-    margin-top: 20px;
-}
-
+/* Arreglo definitivo para que el video no se vea negro */
 .video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 30px;
-    border-radius: 8px;
+    width: 100%;
+    padding-bottom: 56.25%; /* Mantiene la proporción perfecta 16:9 de YouTube */
     background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 25px;
 }
 
 .video-container iframe {
@@ -46,90 +38,26 @@
     left: 0;
     width: 100%;
     height: 100%;
-}
-
-.texto-contenido {
-    line-height: 1.8;
-    color: #333;
-    font-size: 16px;
-    text-align: justify;
-}
-
-.curso-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.btn-completar {
-    background-color: #28a745;
-    color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
 }
 
-.btn-completar:hover {
-    background-color: #218838;
-}
-
-.btn-completar.completado {
-    background-color: #6c757d;
-}
-
-.btn-completar.completado:hover {
-    background-color: #5a6268;
-}
-
-/* =========================================
-   FORZAR DISEÑO MÓVIL EN EL CURSO (CENTRADO)
-   ========================================= */
+/* Adaptación segura y limpia para celulares */
 @media screen and (max-width: 768px) {
-    body {
-        display: block !important; /* Fuerza a que los elementos vayan de arriba hacia abajo */
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow-x: hidden !important;
-    }
-    
-    .navbar {
-        width: 100% !important; /* La línea azul cubre todo el ancho superior */
-        box-sizing: border-box !important;
-        display: flex !important;
-        flex-direction: column !important; /* Centra el texto dentro de la barra azul */
-        align-items: center !important;
-        text-align: center !important;
-    }
-    
     .curso-container {
-        display: block !important; /* Evita que intente ponerse al lado de la barra */
-        width: 90% !important; 
-        max-width: 100vw !important;
-        margin: 30px auto !important; /* El 'auto' centra la caja blanca horizontalmente */
-        padding: 20px !important;
-        box-sizing: border-box !important;
+        width: 95%;
+        margin: 20px auto;
+        padding: 15px;
     }
-
+    
     .curso-header {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 15px !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
-
+    
     .btn-completar {
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    .video-container iframe {
-        width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 16/9 !important; 
+        width: 100%;
+        padding: 15px;
+        text-align: center;
     }
 }
