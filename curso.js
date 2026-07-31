@@ -30,6 +30,21 @@ let estaCompletado = false;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         usuarioActual = user;
+        
+        if (user.displayName) {
+            userInfoEl.textContent = user.displayName;
+        } else {
+            userInfoEl.textContent = user.email;
+        }
+        
+        if (user.photoURL) {
+            userPhotoEl.src = user.photoURL;
+            userPhotoEl.style.display = "block";
+        }
+
+        // Llama a la función aquí
+        cargarTextosVisuales();
+
         if (cursoId) {
             cargarDetalleCurso(cursoId);
             verificarProgreso(cursoId);
@@ -150,3 +165,18 @@ btnCompletar.addEventListener('click', async () => {
         alert("Error al actualizar el progreso: " + error.message);
     }
 });
+
+async function cargarTextosVisuales() {
+    try {
+        const docRef = doc(db, "configuracion", "textos");
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+            document.getElementById('marca-plataforma').textContent = docSnap.data().marca;
+        } else {
+            document.getElementById('marca-plataforma').textContent = "Plataforma Edu";
+        }
+    } catch (error) {
+        console.error("Error al cargar los textos: ", error);
+    }
+}
