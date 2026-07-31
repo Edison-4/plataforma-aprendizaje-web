@@ -4,10 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso - Plataforma de Aprendizaje</title>
-    <!-- Truco anti-caché en los estilos -->
     <link rel="stylesheet" href="style.css?v=7">
     <link rel="stylesheet" href="curso.css?v=7">
+    
+    <!-- EL TRUCO DEFINITIVO: CSS INCORPORADO PARA MÓVILES -->
+    <style>
+        @media screen and (max-width: 768px) {
+            /* Obliga a la página a ser una sola columna vertical */
+            body {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            
+            /* Fuerza a la barra azul a ocupar el 100% de arriba */
+            .navbar {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 15px !important;
+                position: relative !important;
+            }
+
+            .nav-brand {
+                margin-bottom: 15px !important;
+                text-align: center !important;
+            }
+            
+            /* Centra la caja blanca perfectamente abajo */
+            .curso-container {
+                width: 92% !important;
+                max-width: 100% !important;
+                margin: 25px auto !important;
+                box-sizing: border-box !important;
+                display: block !important;
+            }
+
+            .curso-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 15px !important;
+            }
+
+            .btn-completar {
+                width: 100% !important;
+            }
+
+            .video-container iframe {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 16/9 !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-brand" id="marca-plataforma">Cargando...</div>
