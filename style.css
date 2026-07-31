@@ -202,4 +202,49 @@ button:hover {
         font-size: 14px;
         word-break: break-all; 
     }
+        /* Optimizaciones exclusivas para la vista del Curso en móviles */
+    
+    .curso-header {
+        flex-direction: column; /* Apila el título y el botón uno debajo de otro */
+        align-items: flex-start; /* Alinea los elementos a la izquierda */
+        gap: 15px; /* Da un espacio entre el título y el botón */
+    }
+
+    .curso-header h1 {
+        font-size: 24px; /* Reduce un poco el tamaño del título largo */
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .btn-completar {
+        width: 100%; /* El botón verde ocupa todo el ancho disponible */
+        text-align: center;
+        padding: 15px; /* Lo hace más alto y fácil de tocar */
+    }
+
+    /* Hace que los videos de YouTube se adapten a la pantalla sin romper el diseño */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* Mantiene la proporción 16:9 del video */
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Evita que el contenedor principal del curso genere márgenes ocultos */
+    .curso-container {
+        padding: 15px;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+    
 }
