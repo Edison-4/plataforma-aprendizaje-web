@@ -132,7 +132,9 @@ formCurso.addEventListener('submit', async (e) => {
     const descripcion = document.getElementById('descripcion').value;
     const video = document.getElementById('video').value;
     const texto = document.getElementById('texto').value;
-    
+    const recursos = document.getElementById('recursos').value;
+    const cuestionario = document.getElementById('cuestionario').value;
+  
     mensajeEl.style.color = "#0056b3";
     mensajeEl.textContent = "Procesando...";
     
