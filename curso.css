@@ -61,3 +61,36 @@
         text-align: center;
     }
 }
+
+/* =========================================
+   ARREGLO PARA CUESTIONARIO Y BARRA EN MÓVILES
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* 1. Obliga a la página a apilar todo verticalmente */
+    body {
+        display: block !important;
+        overflow-x: hidden !important; /* Evita que se pueda deslizar hacia los lados */
+    }
+
+    /* 2. Asegura que la barra azul cubra el 100% de la parte superior */
+    .navbar {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* 3. Obliga al cuestionario (iframe) a encogerse al tamaño del celular */
+    .cuestionario-container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+        padding: 0 10px !important; /* Un pequeño margen para que no pegue con los bordes */
+    }
+
+    .cuestionario-container iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
